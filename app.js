@@ -12,22 +12,25 @@ app.set("views engine", "ejs");
 app.listen(port);
 
 app.get("/", (req, res) => {
-  // res.send('<p>home page</p>');
-  res.sendFile("./views/index.html", { root: __dirname });
+  const blogs = [
+    //  {title: 'Yoshi finds eggs', snippet: 'Lorem ipsum dolor sit amet consectetur'},
+    // {title: 'Mario finds stars', snippet: 'Lorem ipsum dolor sit amet consectetur'},
+    // {title: 'How to defeat bowser', snippet: 'Lorem ipsum dolor sit amet consectetur'},
+  ];
+  res.render('index.ejs', { title: 'Home', blogs });
 });
 app.get("/about", (req, res) => {
-  // res.send('<p>about page</p>');
-  res.sendFile("./views/about.html", { root: __dirname });
+  res.render("about.ejs",{title:'About'});
 });
 
-// redirects
-
-app.get("/aboutme", (req, res) => {
-  res.redirect("/about");
+app.get('/blogs/create', (req, res) => {
+  res.render('create.ejs',{title:'Create a new Blog'});
 });
 
 // 404 page
 
 app.use((req, res) => {
-  res.sendFile("./views/404.html", { root: __dirname });
+  // res.sendFile("./views/404.html", { root: __dirname });
+  res.status(404).render("404.ejs",{title:'404'});
 });
+
