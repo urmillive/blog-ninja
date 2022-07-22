@@ -1,5 +1,0 @@
-
- NEW CHUNK 
-test text
-godzila
-hello JavaScript
